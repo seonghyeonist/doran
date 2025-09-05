@@ -137,7 +137,8 @@ function LabControls({
           min={0}
           max={60}
           value={exploreRatio}
-          onChange={(e) => onChangeExplore(Number(e.target.value))}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChangeExplore(Number(e.target.value))}
           className="w-40"
         />
         <span className="text-sm w-10 text-right">{exploreRatio}%</span>
@@ -190,13 +191,15 @@ function ComposeScreen() {
           <input
             placeholder="제목"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setTitle(e.target.value)}
             className="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2"
           />
           <textarea
             placeholder="무례함 없이 단단하게. 800자 이내가 읽히기 좋아요."
             value={body}
-            onChange={(e) => setBody(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setBody(e.target.value)}
             rows={10}
             className="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2"
           />
@@ -361,7 +364,8 @@ function ReportModal({ target, onClose }: { target: string; onClose: () => void 
         <p className="text-xs text-neutral-600">허위 신고는 제재될 수 있습니다.</p>
         <select
           value={reason}
-          onChange={(e) => setReason(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setReason(e.target.value)}
           className="w-full rounded-xl border px-3 py-2 text-sm"
         >
           <option value="">사유를 선택하세요</option>
@@ -373,7 +377,8 @@ function ReportModal({ target, onClose }: { target: string; onClose: () => void 
         </select>
         <textarea
           value={note}
-          onChange={(e) => setNote(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setNote(e.target.value)}
           placeholder="추가 설명(선택)"
           rows={3}
           className="w-full rounded-xl border px-3 py-2 text-sm"
