@@ -1,0 +1,169 @@
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000000000000000000000000000000000000..0d100900efb627873e05962f6e1dcbc5d5d3f2ab
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,5 @@
++node_modules
++.dist
++dist
++.env
++.DS_Store
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..b715dbf82319d87d925abc69876bade4032726e2
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,12 @@
++<!DOCTYPE html>
++<html lang="en">
++  <head>
++    <meta charset="UTF-8" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++    <title>Doran MVP</title>
++  </head>
++  <body>
++    <div id="root"></div>
++    <script type="module" src="/src/main.tsx"></script>
++  </body>
++</html>
+diff --git a/package.json b/package.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5b6af638355eac541cbfcbb40214932d620408c8
+--- /dev/null
++++ b/package.json
+@@ -0,0 +1,26 @@
++{
++  "name": "doran-mvp",
++  "version": "0.0.1",
++  "private": true,
++  "type": "module",
++  "scripts": {
++    "dev": "vite",
++    "build": "tsc && vite build",
++    "preview": "vite preview",
++    "test": "echo \"No tests specified\""
++  },
++  "dependencies": {
++    "react": "^18.2.0",
++    "react-dom": "^18.2.0"
++  },
++  "devDependencies": {
++    "@types/react": "^18.2.25",
++    "@types/react-dom": "^18.2.9",
++    "@vitejs/plugin-react": "^4.0.0",
++    "autoprefixer": "^10.4.16",
++    "postcss": "^8.4.35",
++    "tailwindcss": "^3.4.1",
++    "typescript": "^5.3.0",
++    "vite": "^5.0.0"
++  }
++}
+diff --git a/postcss.config.js b/postcss.config.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..2e7af2b7f1a6f391da1631d93968a9d487ba977d
+--- /dev/null
++++ b/postcss.config.js
+@@ -0,0 +1,6 @@
++export default {
++  plugins: {
++    tailwindcss: {},
++    autoprefixer: {},
++  },
++}
+diff --git a/firststep b/src/DoranMVPWire.tsx
+similarity index 100%
+rename from firststep
+rename to src/DoranMVPWire.tsx
+diff --git a/src/index.css b/src/index.css
+new file mode 100644
+index 0000000000000000000000000000000000000000..b5c61c956711f981a41e95f7fcf0038436cfbb22
+--- /dev/null
++++ b/src/index.css
+@@ -0,0 +1,3 @@
++@tailwind base;
++@tailwind components;
++@tailwind utilities;
+diff --git a/src/main.tsx b/src/main.tsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..a24e4fb24f9fad302ccd49f457f0a7bb4234edf1
+--- /dev/null
++++ b/src/main.tsx
+@@ -0,0 +1,10 @@
++import React from 'react'
++import ReactDOM from 'react-dom/client'
++import DoranMVPWire from './DoranMVPWire'
++import './index.css'
++
++ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
++  <React.StrictMode>
++    <DoranMVPWire />
++  </React.StrictMode>,
++)
+diff --git a/tailwind.config.js b/tailwind.config.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..f440b6f55cac0e59a1b0d48a81adcbaeb02e293b
+--- /dev/null
++++ b/tailwind.config.js
+@@ -0,0 +1,7 @@
++export default {
++  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
++  theme: {
++    extend: {},
++  },
++  plugins: [],
++}
+diff --git a/tsconfig.json b/tsconfig.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..e2ccab7a776ed6ebd81608ef12daac88c5f2ced0
+--- /dev/null
++++ b/tsconfig.json
+@@ -0,0 +1,21 @@
++{
++  "compilerOptions": {
++    "target": "ES2020",
++    "useDefineForClassFields": true,
++    "lib": ["DOM", "DOM.Iterable", "ES2020"],
++    "allowJs": false,
++    "skipLibCheck": true,
++    "esModuleInterop": false,
++    "allowSyntheticDefaultImports": true,
++    "strict": true,
++    "forceConsistentCasingInFileNames": true,
++    "module": "ESNext",
++    "moduleResolution": "Node",
++    "resolveJsonModule": true,
++    "isolatedModules": true,
++    "noEmit": true,
++    "jsx": "react-jsx"
++  },
++  "include": ["src"],
++  "references": [{ "path": "./tsconfig.node.json" }]
++}
+diff --git a/tsconfig.node.json b/tsconfig.node.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..9d31e2aed93c876bc048cf2f863cb2a847c901e8
+--- /dev/null
++++ b/tsconfig.node.json
+@@ -0,0 +1,9 @@
++{
++  "compilerOptions": {
++    "composite": true,
++    "module": "ESNext",
++    "moduleResolution": "Node",
++    "allowSyntheticDefaultImports": true
++  },
++  "include": ["vite.config.ts"]
++}
+diff --git a/vite.config.ts b/vite.config.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..9ffcc675746194c4a34eb43404d15db40b810265
+--- /dev/null
++++ b/vite.config.ts
+@@ -0,0 +1,6 @@
++import { defineConfig } from 'vite'
++import react from '@vitejs/plugin-react'
++
++export default defineConfig({
++  plugins: [react()],
++})
