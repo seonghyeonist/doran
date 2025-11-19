@@ -332,7 +332,7 @@ function Comment({ c, onReport }: { c: any; onReport: (target: string) => void }
           <button
             title="좋아요가 아닙니다. 댓글의 ‘울림’을 표시합니다."
             onClick={() => {
-              if (!pressed) setCount((x) => x + 1);
+              if (!pressed) setCount((x: number) => x + 1);
               setPressed(true);
             }}
             className={`px-2.5 py-1 rounded-full text-xs border transition ${
