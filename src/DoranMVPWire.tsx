@@ -317,7 +317,7 @@ function PostCard({
 
 function Comment({ c, onReport }: { c: any; onReport: (target: string) => void }) {
   const [pressed, setPressed] = useState(false);
-  const [count, setCount] = useState(c.resonates);
+  const [count, setCount] = useState<number>(c.resonates);
   return (
     <div className="flex gap-3">
       <div className="w-8 h-8 rounded-full bg-neutral-200" />
